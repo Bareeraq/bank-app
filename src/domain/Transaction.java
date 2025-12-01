@@ -15,7 +15,7 @@ public class Transaction {
         this.amount = amount;
         this.id = id;
         this.note = note;
-        this.timestamp = this.timestamp;
+        this.timestamp = LocalDateTime.now();
         this.type = type;
     }
 
