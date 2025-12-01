@@ -4,13 +4,13 @@ public class Account {
     private String accountNumber;
     private String customerId;
     private Double balance;
-    private String accountType;
+    private String type;
 
-    public Account(String accountNumber, String customerId, Double balance, String accountType) {
+    public Account(String accountNumber, String type, Double balance, String customerId) {
         this.accountNumber = accountNumber;
         this.customerId = customerId;
         this.balance = balance;
-        this.accountType = accountType;
+        this.type = type;
     }
 
     public String getAccountNumber() {
@@ -38,10 +38,10 @@ public class Account {
     }
 
     public String getAccountType() {
-        return accountType;
+        return type;
     }
 
     public void setAccountType(String accountType) {
-        this.accountType = accountType;
+        this.type = accountType;
     }
 }
