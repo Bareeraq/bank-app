@@ -30,7 +30,7 @@ public class Main {
                     case "3" -> withdraw(sc);
                     case "4" -> transfer(sc);
                     case "5" -> statement(sc);
-                    case "6" -> listAccounts(sc);
+                    case "6" -> listAccounts(sc, bankService);
                     case "7" -> searchAccounts(sc);
                     case "0" -> running = false;
                 }
@@ -48,10 +48,20 @@ public class Main {
         String amountStr = sc.nextLine().trim();
         Double initial = Double.valueOf(amountStr);
 
-        bankService.openAccount(name, email, type);
+        String accountNumber = bankService.openAccount(name, email, type);
+        if(initial > 0){
+            bankService.deposit();
+        }
+        System.out.println("Account opened: " + accountNumber);
     }
 
-    private static void deposit(Scanner sc) {
+    private static void deposit(Scanner sc, BankService bankService) {
+        System.out.println("Account Number: ");
+        String accountNumber = sc.nextLine().trim();
+        System.out.println("Amount: ");
+        Double amount = Double.valueOf(sc.nextLine().trim());
+        bankService.deposit(accountNumber, amount, "note");
+        System.out.println("Deposited");
     }
 
     private static void withdraw(Scanner sc) {
@@ -63,7 +73,11 @@ public class Main {
     private static void statement(Scanner sc) {
     }
 
-    private static void listAccounts(Scanner sc) {
+    private static void listAccounts(Scanner sc, BankService bankService) {
+        bankService.listAccounts().forEach(a ->{
+            System.out.println(a.getAccountNumber() + " | " + a.getAccountType() + " | " + a.getBalance());
+        });
+
     }
 
     private static void searchAccounts(Scanner sc) {
