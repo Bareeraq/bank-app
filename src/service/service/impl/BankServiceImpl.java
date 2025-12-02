@@ -24,6 +24,11 @@ public class BankServiceImpl implements BankService {
     @Override
     public String openAccount(String name, String email, String accountType) {
         String customerId = UUID.randomUUID().toString();
+
+        //create customer
+        Customer c = new Customer(email, customerId, name);
+        customerRepository.save(c);
+
         String accountNumber = getAccountNumber();
         Account account = new Account(accountNumber, accountType, (double) 0, customerId);
 
