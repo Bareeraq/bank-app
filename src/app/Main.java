@@ -1,6 +1,6 @@
 package app;
 import service.BankService;
-import service.service.impl.BankServiceImpl;
+import service.impl.BankServiceImpl;
 
 import java.util.*;
 
@@ -47,7 +47,8 @@ public class Main {
         System.out.println("Initial deposit (optional, blank for 0): ");
         String amountStr = sc.nextLine().trim();
 
-        if(amountStr.isBlank()) amountStr = "0";
+        if(amountStr.isBlank())
+            amountStr = "0";
         Double initial = Double.valueOf(amountStr);
 
         String accountNumber = bankService.openAccount(name, email, type);
